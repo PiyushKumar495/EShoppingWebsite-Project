@@ -1,0 +1,233 @@
+<style>
+.order-history-container {
+  margin: 0 auto;
+  max-width: 700px;
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 2px 12px 0 rgba(0,0,0,0.07);
+  padding: 24px 18px 32px 18px;
+}
+.order-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 8px 0;
+}
+.order-header-main {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+  font-size: 1.08rem;
+}
+.order-id {
+  font-weight: bold;
+  color: #ff3f6c;
+}
+.order-date {
+  color: #888;
+}
+.order-amount {
+  color: #1a8f3c;
+  font-weight: 500;
+}
+.order-header-status {
+  min-width: 100px;
+  text-align: right;
+}
+.status-badge {
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 0.98rem;
+  font-weight: 600;
+  color: #fff;
+  background: #888;
+  text-transform: capitalize;
+  box-shadow: 0 1px 4px 0 rgba(0,0,0,0.08);
+}
+.status-pending { background: #ff9800; }
+.status-shipped { background: #1976d2; }
+.status-delivered { background: #43a047; }
+.status-cancelled { background: #e53935; }
+.order-summary-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 10px 0 18px 0;
+  gap: 24px;
+}
+.order-summary-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 1rem;
+}
+.order-summary-status {
+  min-width: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.order-details {
+  background: #f9f9f9;
+  border-radius: 12px;
+  margin: 0 0 12px 0;
+  padding: 18px 18px 8px 18px;
+  box-shadow: 0 1px 6px 0 rgba(0,0,0,0.04);
+}
+.order-items-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 6px;
+  margin-top: 8px;
+}
+.order-items-table th {
+  background: #ffe6ee;
+  color: #ff3f6c;
+  font-weight: 700;
+  padding: 8px 0;
+  border-radius: 8px 8px 0 0;
+}
+.order-items-table td {
+  background: #fff;
+  padding: 8px 0;
+  border-radius: 0 0 8px 8px;
+  text-align: center;
+  font-size: 1.01rem;
+}
+@media (max-width: 800px) {
+  .order-history-container { max-width: 99vw; padding: 8px 2vw; }
+  .order-header-main { flex-direction: column; gap: 4px; align-items: flex-start; }
+  .order-summary-row { flex-direction: column; gap: 8px; }
+  .order-details { padding: 10px 4px; }
+}
+</style>
+<mat-card *ngIf="user && user.role && user.role.toLowerCase() === 'customer'" class="profile-main-card animated-fade-in">
+  <mat-card-title>
+    <mat-icon class="profile-avatar">account_circle</mat-icon> My Profile
+  </mat-card-title>
+  <mat-card-content>
+    <div class="profile-section">
+      <h3><mat-icon class="section-icon">person</mat-icon> Personal Details</h3>
+      <p><mat-icon class="field-icon">badge</mat-icon> <strong>Name:</strong> {{ user.fullName || user.FullName }}</p>
+      <p><mat-icon class="field-icon">mail</mat-icon> <strong>Email:</strong> {{ user.email || user.Email }}</p>
+      <p><mat-icon class="field-icon">verified_user</mat-icon> <strong>Role:</strong> {{ user.role || user.Role }}</p>
+    </div>
+    <div class="profile-section">
+      <h3><mat-icon class="section-icon">contact_mail</mat-icon> Contact Details</h3>
+      <p><mat-icon class="field-icon">mail</mat-icon> <strong>Email:</strong> {{ user.email }}</p>
+      <!-- Add more contact fields if available -->
+    </div>
+    <div class="profile-section">
+      <h3><mat-icon class="section-icon">history</mat-icon> Order History</h3>
+      <div class="order-history-container">
+        <div *ngIf="loadingOrders"><mat-progress-bar mode="indeterminate"></mat-progress-bar></div>
+        <div *ngIf="!loadingOrders && orders.length === 0">
+          <mat-card><mat-icon>info</mat-icon> No orders found.</mat-card>
+        </div>
+        <div *ngIf="!loadingOrders && error">
+          <mat-card color="warn"><mat-icon>error</mat-icon> {{ error }}</mat-card>
+        </div>
+        <mat-accordion *ngIf="orders.length > 0">
+          <mat-expansion-panel *ngFor="let order of orders">
+            <mat-expansion-panel-header>
+              <div class="order-header-row">
+                <div class="order-header-main">
+                  <span class="order-id">Order #{{ order.orderId }}</span>
+                  <span class="order-date">{{ order.orderDate | date:'short' }}</span>
+                  <span class="order-amount">₹{{ order.totalAmount }}</span>
+                </div>
+                <div class="order-header-status">
+                  <span class="status-badge status-{{ order.status.toLowerCase() }}">{{ order.status }}</span>
+                </div>
+              </div>
+            </mat-expansion-panel-header>
+            <div class="order-summary-row">
+              <div class="order-summary-info">
+                <span><b>Shipping Address:</b> {{ order.shippingAddress }}</span>
+                <span><b>Payment:</b> {{ order.paymentMethod }}</span>
+              </div>
+              <div class="order-summary-status" style="flex-direction: column; align-items: flex-end; gap: 6px;">
+                <div>
+                  <span class="status-badge status-{{ order.status.toLowerCase() }}">{{ order.status }}</span>
+                </div>
+                <div>
+                  <ng-container *ngIf="order.payment && order.payment.status">
+                    <span *ngIf="order.payment.status === 'Refund'">
+                      <mat-icon class="field-icon">undo</mat-icon> Refunded
+                    </span>
+                    <span *ngIf="order.payment.status === 'Pending' && order.payment.mode === 'COD'">
+                      <mat-icon class="field-icon">pending</mat-icon> Pending (COD - Payment will be completed upon delivery)
+                    </span>
+                    <span *ngIf="order.payment.status !== 'Refund' && !(order.payment.status === 'Pending' && order.payment.mode === 'COD')">
+                      <mat-icon class="field-icon">done</mat-icon> {{ order.payment.status }}
+                    </span>
+                  </ng-container>
+                  <span *ngIf="!order.payment"><mat-icon class="field-icon">close</mat-icon> Unpaid</span>
+                </div>
+                <div style="margin-top: 4px;">
+                  <button mat-raised-button color="warn" (click)="cancelOrder(order.orderId, order.status)" [disabled]="order.status === 'Cancelled' || cancellingOrderId === order.orderId">
+                    <mat-icon class="action-icon">cancel</mat-icon>
+                    {{ order.status === 'Cancelled' ? 'Cancelled' : (cancellingOrderId === order.orderId ? 'Cancelling...' : 'Cancel') }}
+                  </button>
+                  <button mat-raised-button color="primary" *ngIf="!order.payment && order.status !== 'Cancelled'" (click)="openPayForm(order)">
+                    <mat-icon class="action-icon">payments</mat-icon> Pay
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="order-details">
+              <h3>Order Items</h3>
+              <ng-container *ngIf="order.items && order.items.length > 0; else noItems">
+                <table class="order-items-table">
+                  <thead>
+                    <tr>
+                      <th>Product Name</th>
+                      <th>Quantity</th>
+                      <th>Price</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let item of order.items">
+                      <td>{{ item.productName }}</td>
+                      <td>{{ item.quantity }}</td>
+                      <td>₹{{ item.price }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </ng-container>
+              <ng-template #noItems>
+                <div style="padding: 12px; color: #ff3f6c;">No items found for this order.</div>
+              </ng-template>
+            </div>
+          </mat-expansion-panel>
+        </mat-accordion>
+
+      </div>
+    </div>
+    <div class="profile-section">
+      <button mat-raised-button color="accent" (click)="editingProfile = true" *ngIf="!editingProfile">Edit Profile</button>
+      <form *ngIf="editingProfile" (ngSubmit)="saveProfile()" #profileForm="ngForm" class="edit-profile-form">
+        <mat-form-field appearance="fill">
+          <mat-label>Name</mat-label>
+          <input matInput name="name" [(ngModel)]="editName" required />
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Email</mat-label>
+          <input matInput name="email" [(ngModel)]="editEmail" required type="email" />
+        </mat-form-field>
+        <button mat-raised-button color="primary" type="submit" [disabled]="profileSaving">Save</button>
+        <button mat-button type="button" (click)="cancelEdit()" [disabled]="profileSaving">Cancel</button>
+        <mat-progress-bar *ngIf="profileSaving" mode="indeterminate"></mat-progress-bar>
+        <div *ngIf="profileError" class="error-state">{{ profileError }}</div>
+        <div *ngIf="profileSuccess" class="success-state">Profile updated successfully!</div>
+      </form>
+    </div>
+  </mat-card-content>
+</mat-card>
+<mat-card *ngIf="user && user.role && user.role.toLowerCase() !== 'customer'">
+  <mat-card-title>Profile</mat-card-title>
+  <mat-card-content>
+    <p>This profile view is for customers only.</p>
+  </mat-card-content>
+</mat-card>

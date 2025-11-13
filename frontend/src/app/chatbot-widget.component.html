@@ -1,0 +1,36 @@
+<div class="chatbot-widget" [class.open]="isOpen">
+  <div class="chatbot-header" (click)="toggleOpen()">
+    <div class="header-left">
+      <span class="bot-icon">🤖</span>
+      <span>AI Assistant</span>
+    </div>
+    <div class="header-actions" *ngIf="isOpen">
+      <button class="clear-btn" (click)="clearChat(); $event.stopPropagation()" title="Clear Chat">🗑️</button>
+      <button class="close-btn" (click)="toggleOpen(); $event.stopPropagation()">×</button>
+    </div>
+  </div>
+  <div class="chatbot-body" *ngIf="isOpen">
+    <div *ngFor="let msg of messages" [ngClass]="msg.sender">
+      <ng-container *ngIf="msg.sender === 'bot'; else userMsg">
+        <div class="chat-bubble" [innerHTML]="msg.text"></div>
+      </ng-container>
+      <ng-template #userMsg>
+        <div class="chat-bubble">{{msg.text}}</div>
+      </ng-template>
+    </div>
+    <form (ngSubmit)="sendMessage()">
+      <input 
+        [(ngModel)]="userInput" 
+        name="userInput" 
+        placeholder="Ask me about products, orders, or anything else..." 
+        autocomplete="off" 
+        [disabled]="isLoading"
+        (keypress)="onKeyPress($event)"
+        #messageInput />
+      <button type="submit" [disabled]="isLoading || !userInput.trim()">
+        <span *ngIf="!isLoading">Send</span>
+        <span *ngIf="isLoading">...</span>
+      </button>
+    </form>
+  </div>
+</div>

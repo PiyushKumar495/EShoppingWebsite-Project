@@ -1,0 +1,34 @@
+<div class="product-list">
+  <h2 class="product-list-title">Products</h2>
+  <div *ngIf="loading" class="full-width"><mat-progress-bar mode="indeterminate"></mat-progress-bar></div>
+  <div *ngIf="error" class="full-width">
+    <mat-card color="warn">{{ error }}</mat-card>
+  </div>
+  <div class="product-grid" *ngIf="!loading && !error">
+    <mat-card class="product-card animated-card" *ngFor="let product of products">
+      <mat-card-title class="product-title">{{ product.name }}</mat-card-title>
+      <mat-card-content>
+        <p class="product-desc">{{ product.description }}</p>
+        <div class="product-meta">
+          <span class="product-price">₹{{ product.price }}</span>
+          <span class="product-stock" [ngClass]="{'in-stock': product.stockQuantity > 0, 'out-of-stock': product.stockQuantity === 0}">
+            {{ product.stockQuantity > 0 ? 'In Stock (' + product.stockQuantity + ')' : 'Out of Stock' }}
+          </span>
+        </div>
+        <div class="qty-buttons">
+          <button mat-mini-button color="primary" (click)="decrementQuantity(product)">-</button>
+          <span class="qty-value">{{ product.selectedQuantity || 1 }}</span>
+          <button mat-mini-button color="primary" (click)="incrementQuantity(product)">+</button>
+        </div>
+        <!-- <mat-form-field appearance="outline" class="qty-field">
+          <mat-label>Qty</mat-label>
+          <input matInput type="number" min="1" [max]="product.stockQuantity" [(ngModel)]="product.selectedQuantity" [value]="product.selectedQuantity || 1">
+        </mat-form-field> -->
+      </mat-card-content>
+      <mat-card-actions align="end">
+        <button mat-raised-button color="primary" (click)="goToDetail(product)">View</button>
+        <button mat-raised-button color="accent" (click)="adDtoCart(product, product.selectedQuantity || 1)" [disabled]="product.stockQuantity === 0">Add to Cart</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>

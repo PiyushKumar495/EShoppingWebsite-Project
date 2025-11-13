@@ -1,0 +1,12 @@
+body, .orders-main-card {
+  background: #fff !important;
+  color: #232323 !important;
+}
+.orders-title {
+  color: #ff3f6c;
+}
+table, th, td {
+  background: #fff !important;
+  color: #232323 !important;
+  border-radius: 8px;
+}

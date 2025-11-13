@@ -1,0 +1,13 @@
+{
+  "/api": {
+    "target": "http://localhost:5208",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug"
+  },
+  "/product-images": {
+    "target": "http://localhost:5208",
+    "secure": false,
+    "changeOrigin": true
+  }
+}

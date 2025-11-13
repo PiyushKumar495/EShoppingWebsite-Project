@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<RunSettings>
+  <DataCollectionRunSettings>
+    <DataCollectors>
+      <DataCollector friendlyName="XPlat code coverage">
+        <Configuration>
+          <Format>cobertura</Format>
+          <ExcludeByFile>**/frontend/**/*</ExcludeByFile>
+          <ExcludeByFile>**/sonarqube-*/**/*</ExcludeByFile>
+          <ExcludeByFile>**/bin/**/*</ExcludeByFile>
+          <ExcludeByFile>**/obj/**/*</ExcludeByFile>
+          <ExcludeByFile>**/TestResults/**/*</ExcludeByFile>
+          <ExcludeByFile>**/coverage/**/*</ExcludeByFile>
+          <ExcludeByAttribute>Obsolete,GeneratedCodeAttribute,CompilerGeneratedAttribute</ExcludeByAttribute>
+        </Configuration>
+      </DataCollector>
+    </DataCollectors>
+  </DataCollectionRunSettings>
+</RunSettings>

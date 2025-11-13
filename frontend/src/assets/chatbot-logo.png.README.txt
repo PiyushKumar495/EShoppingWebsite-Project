@@ -1,0 +1,4 @@
+// This file is the chatbot logo image. Please move the provided image to this path in your project:
+// frontend/src/assets/chatbot-logo.png
+//
+// After moving, the Angular app can reference it as 'assets/chatbot-logo.png'.

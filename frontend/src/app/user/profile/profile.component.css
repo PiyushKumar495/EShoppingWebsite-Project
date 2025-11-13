@@ -1,0 +1,201 @@
+:host {
+  display: block;
+  background: #fafbfc !important;
+  color: #232323 !important;
+  border-radius: 16px;
+  padding: 32px 0;
+  margin: 24px auto;
+  max-width: 1200px;
+  box-shadow: 0 4px 24px #ff3f6c18;
+}
+.profile-section {
+  margin-bottom: 32px;
+  background: #fff !important;
+  border-radius: 12px;
+  padding: 20px 24px;
+  box-shadow: 0 2px 12px #ff3f6c11;
+  border: 1px solid #ffe3ec;
+  color: #232323;
+}
+.profile-section h3 {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #ff3f6c;
+  margin-bottom: 12px;
+  letter-spacing: 0.01em;
+  animation: fadeInSection 0.7s cubic-bezier(0.4,0,0.2,1);
+}
+@keyframes fadeInSection {
+  from { opacity: 0; transform: translateX(-16px); }
+  to { opacity: 1; transform: none; }
+}
+.profile-section strong {
+  color: #232323;
+}
+.order-history-container {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 2px 12px #ff3f6c11;
+  padding: 32px 24px;
+  margin: 24px auto;
+  max-width: 1000px;
+  overflow-x: auto;
+}
+.order-history-table {
+  width: 100%;
+  min-width: 900px;
+  border-collapse: separate;
+  border-spacing: 0 8px;
+  background: transparent;
+}
+.order-history-table th, .order-history-table td {
+  background: #fff !important;
+  color: #232323 !important;
+  padding: 14px 12px;
+  text-align: left;
+  font-size: 1.05rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px #0001;
+  border-bottom: none;
+}
+.order-history-table th {
+  color: #ff3f6c !important;
+  font-weight: 700;
+  background: #fff0f5 !important;
+  letter-spacing: 0.5px;
+}
+.order-history-table tr {
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+.order-history-table tr:hover {
+  box-shadow: 0 4px 16px #ff3f6c22;
+  transform: translateY(-2px) scale(1.01);
+}
+.order-history-table ul {
+  margin: 0;
+  padding-left: 18px;
+}
+.order-history-table li {
+  font-size: 0.98em;
+  color: #555;
+  margin-bottom: 2px;
+}
+.status-badge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 0.95em;
+  font-weight: 600;
+  background: #ffe3ec;
+  color: #ff3f6c;
+  margin-right: 4px;
+}
+.status-badge.Delivered {
+  background: #e8f5e9;
+  color: #388e3c;
+}
+.status-badge.Shipped {
+  background: #e3f2fd;
+  color: #1976d2;
+}
+.status-badge.Cancelled {
+  background: #ffebee;
+  color: #d32f2f;
+}
+.status-badge.Pending {
+  background: #fffde7;
+  color: #fbc02d;
+}
+.pay-form-dialog {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px #ff3f6c22;
+  padding: 24px;
+  max-width: 400px;
+  margin: 32px auto;
+}
+.pay-form-dialog h3 {
+  color: #ff3f6c;
+  margin-bottom: 16px;
+}
+button[mat-raised-button] {
+  font-weight: 600;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px #ff3f6c11;
+  margin-right: 8px;
+  margin-bottom: 6px;
+}
+button[mat-raised-button][color="warn"] {
+  background: #ffebee !important;
+  color: #d32f2f !important;
+}
+button[mat-raised-button][color="primary"] {
+  background: #ff3f6c !important;
+  color: #fff !important;
+}
+button[mat-raised-button][color="primary"]:hover {
+  background: #d81b60 !important;
+}
+.profile-main-card {
+  background: #fff !important;
+  color: #232323 !important;
+  border-radius: 18px;
+  box-shadow: 0 4px 32px #ff3f6c22;
+  padding: 32px 28px 24px 28px;
+  margin: 32px auto;
+  max-width: 700px;
+  position: relative;
+  animation: fadeInProfile 0.7s cubic-bezier(0.4,0,0.2,1);
+}
+@keyframes fadeInProfile {
+  from { opacity: 0; transform: translateY(32px) scale(0.98); }
+  to { opacity: 1; transform: none; }
+}
+.profile-avatar {
+  font-size: 2.5rem;
+  color: #ff3f6c;
+  vertical-align: middle;
+  margin-right: 10px;
+  animation: popIn 0.7s cubic-bezier(0.4,0,0.2,1);
+}
+.section-icon {
+  font-size: 1.3em;
+  color: #ff3f6c;
+  vertical-align: middle;
+  margin-right: 6px;
+  transition: color 0.2s, transform 0.2s;
+}
+.field-icon {
+  font-size: 1.1em;
+  color: #d72660;
+  vertical-align: middle;
+  margin-right: 4px;
+  transition: color 0.2s;
+}
+.status-icon {
+  font-size: 1.1em;
+  margin-right: 2px;
+  vertical-align: middle;
+  color: #388e3c;
+}
+.status-badge.Delivered .status-icon { color: #388e3c; }
+.status-badge.Shipped .status-icon { color: #1976d2; }
+.status-badge.Cancelled .status-icon { color: #d32f2f; }
+.status-badge.Pending .status-icon { color: #ffb300; }
+.animated-fade-in {
+  animation: fadeInProfile 0.7s cubic-bezier(0.4,0,0.2,1);
+}
+button .action-icon {
+  font-size: 1.1em;
+  margin-right: 4px;
+  vertical-align: middle;
+  color: #fff;
+  transition: color 0.2s, transform 0.2s;
+}
+button:hover .action-icon {
+  color: #ffd54f;
+  transform: scale(1.18) rotate(-8deg);
+}

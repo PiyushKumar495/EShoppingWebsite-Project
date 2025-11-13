@@ -1,0 +1,24 @@
+<div class="payments-section">
+  <h2>All Payments</h2>
+  <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+  <div *ngIf="error" class="empty-state error-state">{{ error }}</div>
+  <div *ngIf="!loading && payments.length === 0 && !error" class="empty-state">No payments found.</div>
+  <table *ngIf="payments.length > 0" class="mat-elevation-z2 full-width">
+    <tr>
+      <th>Payment ID</th>
+      <th>Order ID</th>
+      <th>Mode</th>
+      <th>Amount</th>
+      <th>Date</th>
+      <th>Status</th>
+    </tr>
+    <tr *ngFor="let payment of payments">
+      <td>{{ payment.paymentId }}</td>
+      <td>{{ payment.orderId }}</td>
+      <td>{{ payment.mode }}</td>
+      <td>₹{{ payment.amount }}</td>
+      <td>{{ payment.paymentDate | date:'short' }}</td>
+      <td>{{ payment.status }}</td>
+    </tr>
+  </table>
+</div>

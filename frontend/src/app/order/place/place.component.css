@@ -1,0 +1,83 @@
+:host {
+  display: block;
+  background: #fafbfc !important;
+  color: #232323 !important;
+  border-radius: 16px;
+  padding: 32px 0;
+  margin: 24px auto;
+  max-width: 600px;
+  box-shadow: 0 4px 24px #ff3f6c18;
+}
+
+body, .order-place-main-card, mat-card {
+  background: #fff !important;
+  color: #232323 !important;
+  border-radius: 16px;
+  box-shadow: 0 2px 12px #ff3f6c11;
+  padding: 32px 32px 24px 32px;
+}
+
+.order-place-title, h2 {
+  color: #ff3f6c;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 24px;
+  text-align: center;
+  letter-spacing: 0.5px;
+}
+
+mat-form-field.full-width {
+  width: 100%;
+  margin-bottom: 24px;
+}
+
+mat-form-field textarea, mat-form-field input, mat-select {
+  background: #fff0f5 !important;
+  border-radius: 8px !important;
+}
+
+mat-label {
+  color: #ff3f6c !important;
+  font-weight: 600;
+}
+
+mat-select {
+  color: #232323 !important;
+}
+
+mat-error {
+  color: #d32f2f !important;
+  font-weight: 500;
+}
+
+button[mat-raised-button][color="primary"] {
+  background: #ff3f6c !important;
+  color: #fff !important;
+  font-weight: 700;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px #ff3f6c33;
+  padding: 12px 32px;
+  font-size: 1.1rem;
+  margin-top: 12px;
+  transition: background 0.2s, color 0.2s;
+}
+
+button[mat-raised-button][color="primary"]:hover {
+  background: #c2185b !important;
+}
+
+@media (max-width: 700px) {
+  :host, mat-card {
+    padding: 16px 4vw;
+    max-width: 98vw;
+  }
+}
+
+@media (max-width: 500px) {
+  :host, mat-card {
+    padding: 8px 2px;
+  }
+  .order-place-title, h2 {
+    font-size: 1.3rem;
+  }
+}

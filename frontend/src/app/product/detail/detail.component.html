@@ -1,0 +1,35 @@
+<div *ngIf="loading"><mat-progress-bar mode="indeterminate"></mat-progress-bar></div>
+<mat-card *ngIf="!loading && product" class="product-detail-main-card animated-fade-in">
+  <mat-card-header>
+    <mat-icon class="product-icon">shopping_bag</mat-icon>
+    <mat-card-title class="product-detail-title">{{ product.name }}</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <div class="product-detail-info">
+      <p class="product-detail-desc">{{ product.description }}</p>
+      <div class="product-detail-meta">
+        <span class="product-detail-price">
+          <mat-icon class="meta-icon">sell</mat-icon>
+          <strong>Price:</strong> <span class="text-pink">
+	{{ product.price }}</span>
+        </span>
+        <span class="product-detail-stock">
+          <mat-icon class="meta-icon">inventory_2</mat-icon>
+          <strong>Stock:</strong> {{ product.stockQuantity }}
+        </span>
+      </div>
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Quantity</mat-label>
+        <input matInput type="number" min="1" [max]="product.stockQuantity" [(ngModel)]="quantity" />
+      </mat-form-field>
+    </div>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-raised-button color="accent" (click)="adDtoCart()">
+      <mat-icon class="action-icon">add_shopping_cart</mat-icon> Add to Cart
+    </button>
+  </mat-card-actions>
+</mat-card>
+<div *ngIf="!loading && error">
+  <mat-card color="warn">{{ error }}</mat-card>
+</div>

@@ -1,0 +1,42 @@
+<div *ngIf="loading"><mat-progress-bar mode="indeterminate"></mat-progress-bar></div>
+<mat-card *ngIf="!loading && cart" class="cart-main-card">
+  <mat-card-title class="cart-title">
+    <mat-icon style="vertical-align: middle; color: #ffd54f; font-size: 2rem;">shopping_cart</mat-icon>
+    <span>Shopping Cart</span>
+  </mat-card-title>
+  <mat-card-content>
+    <table *ngIf="cart.items.length > 0" class="cart-table">
+      <tr>
+        <th>Product</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Total</th>
+        <th></th>
+      </tr>
+      <tr *ngFor="let item of cart.items" class="cart-row">
+        <td class="cart-product">
+          <mat-icon style="vertical-align: middle; color: #ffd54f;">shopping_bag</mat-icon>
+          <span class="cart-product-name">{{ item.productName }}</span>
+        </td>
+        <td class="cart-price">₹{{ item.price }}</td>
+        <td class="cart-qty">{{ item.quantity }}</td>
+        <td class="cart-total">₹{{ item.totalPrice }}</td>
+        <td><button mat-icon-button color="warn" (click)="removeItem(item)"><mat-icon>delete</mat-icon></button></td>
+      </tr>
+    </table>
+    <div *ngIf="cart.items.length === 0" class="cart-empty">
+      <mat-icon style="font-size: 3rem; color: #ffd54f;">remove_shopping_cart</mat-icon>
+      <div>Your cart is empty.</div>
+    </div>
+    <div class="cart-grand-total" *ngIf="cart.items.length > 0">
+      <strong>Grand Total: ₹{{ cart.granDtotal }}</strong>
+    </div>
+  </mat-card-content>
+  <mat-card-actions *ngIf="cart.items.length > 0" align="end">
+    <button mat-raised-button color="warn" (click)="clearCart()"><mat-icon>delete_sweep</mat-icon> Clear Cart</button>
+    <button mat-raised-button color="primary" (click)="onCheckout()"><mat-icon>payment</mat-icon> Checkout</button>
+  </mat-card-actions>
+</mat-card>
+<div *ngIf="!loading && error">
+  <mat-card color="warn">{{ error }}</mat-card>
+</div>

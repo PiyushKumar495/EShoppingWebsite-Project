@@ -1,0 +1,21 @@
+:host {
+  display: block;
+  background: #23272a;
+  color: #e0e0e0;
+  border-radius: 12px;
+  padding: 24px;
+  margin: 24px auto;
+  max-width: 700px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.18);
+}
+body, .payments-main-card {
+  background: #fff !important;
+  color: #232323 !important;
+}
+.payments-title {
+  color: #ff3f6c;
+}
+table, th, td {
+  background: #fff !important;
+  color: #232323 !important;
+}

@@ -1,0 +1,27 @@
+<mat-card class="login-card">
+  <div class="login-header">
+    <mat-icon class="login-icon">lock</mat-icon>
+    <h2>Sign In to Your Account</h2>
+  </div>
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="email" type="email" required />
+      <mat-error *ngIf="loginForm.get('email')?.hasError('required')">Email is required</mat-error>
+      <mat-error *ngIf="loginForm.get('email')?.hasError('email')">Invalid email</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Password</mat-label>
+      <input matInput formControlName="password" type="password" required />
+      <mat-error *ngIf="loginForm.get('password')?.hasError('required')">Password is required</mat-error>
+    </mat-form-field>
+    <button mat-raised-button color="primary" type="submit" [disabled]="loading || loginForm.invalid">
+      <mat-icon *ngIf="!loading">login</mat-icon>
+      <mat-progress-spinner *ngIf="loading" diameter="20" mode="indeterminate"></mat-progress-spinner>
+      {{ loading ? 'Logging in...' : 'Login' }}
+    </button>
+    <div class="register-link">
+      New to EShop? <a href="/register">Create an account</a>
+    </div>
+  </form>
+</mat-card>

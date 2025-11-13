@@ -1,0 +1,49 @@
+<div *ngIf="loading"><mat-progress-bar mode="indeterminate"></mat-progress-bar></div>
+<mat-card *ngIf="!loading && orders.length">
+  <mat-card-title>Order History</mat-card-title>
+  <mat-card-content>
+    <table class="order-history-table full-width">
+      <tr>
+        <th>Order #</th>
+        <th>Date</th>
+        <th>Order Status</th>
+        <th>Total</th>
+        <th>Payment</th>
+        <th>Payment Status</th>
+        <th>Shipping</th>
+        <th>Items</th>
+      </tr>
+      <tr *ngFor="let order of orders">
+        <td>{{ order.orderId }}</td>
+        <td>{{ order.orderDate | date:'short' }}</td>
+        <td>
+          <ng-container *ngIf="canChangeStatus(order); else statusText">
+            <select [ngModel]="order.status" (ngModelChange)="onStatusChange(order, $event)">
+              <option *ngFor="let status of getAvailableStatuses(order)" [value]="status">{{ status }}</option>
+            </select>
+          </ng-container>
+          <ng-template #statusText>
+            <span class="status-badge {{order.status}}">{{ order.status }}</span>
+          </ng-template>
+        </td>
+        <td>₹{{ order.totalAmount }}</td>
+        <td>{{ order.paymentMethod }}</td>
+        <td>{{ order.payment?.status || '-' }}</td>
+        <td>{{ order.shippingAddress }}</td>
+        <td>
+          <ul>
+            <li *ngFor="let item of order.items">
+              #{{ item.productId }} x{{ item.quantity }} (₹{{ item.price }})
+            </li>
+          </ul>
+        </td>
+      </tr>
+    </table>
+  </mat-card-content>
+</mat-card>
+<div *ngIf="!loading && !orders.length">
+  <mat-card>No orders found.</mat-card>
+</div>
+<div *ngIf="!loading && error">
+  <mat-card color="warn">{{ error }}</mat-card>
+</div>

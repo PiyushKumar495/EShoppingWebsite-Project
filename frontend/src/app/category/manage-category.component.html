@@ -1,0 +1,80 @@
+<div class="manage-category">
+  <h2 class="category-title">
+    <mat-icon style="vertical-align: middle; color: #1976d2; font-size: 2rem;">category</mat-icon>
+    <span>Manage Categories</span>
+  </h2>
+
+  <mat-card class="category-card">
+    <form [formGroup]="categoryForm" (ngSubmit)="createCategory()" class="category-form">
+      <mat-form-field appearance="outline">
+        <mat-label>New Category Name</mat-label>
+        <input matInput formControlName="categoryName" required [ngClass]="{'ng-invalid': categoryForm.get('categoryName')?.invalid && (categoryForm.get('categoryName')?.touched || categoryForm.get('categoryName')?.dirty)}" />
+        <mat-error *ngIf="categoryForm.get('categoryName')?.invalid && (categoryForm.get('categoryName')?.touched || categoryForm.get('categoryName')?.dirty)">
+          Category name is required.
+        </mat-error>
+      </mat-form-field>
+      <button mat-raised-button color="primary" type="submit" [disabled]="categoryForm.invalid || loading">Add Category</button>
+    </form>
+  </mat-card>
+
+  <mat-card class="category-card">
+    <form [formGroup]="updateForm" (ngSubmit)="updateCategory()" class="category-form">
+      <mat-form-field appearance="outline">
+        <mat-label>Old Category Name</mat-label>
+        <input matInput formControlName="oldName" required [ngClass]="{'ng-invalid': updateForm.get('oldName')?.invalid && (updateForm.get('oldName')?.touched || updateForm.get('oldName')?.dirty)}" />
+        <mat-error *ngIf="updateForm.get('oldName')?.invalid && (updateForm.get('oldName')?.touched || updateForm.get('oldName')?.dirty)">
+          Old category name is required.
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>New Category Name</mat-label>
+        <input matInput formControlName="categoryName" required [ngClass]="{'ng-invalid': updateForm.get('categoryName')?.invalid && (updateForm.get('categoryName')?.touched || updateForm.get('categoryName')?.dirty)}" />
+        <mat-error *ngIf="updateForm.get('categoryName')?.invalid && (updateForm.get('categoryName')?.touched || updateForm.get('categoryName')?.dirty)">
+          New category name is required.
+        </mat-error>
+      </mat-form-field>
+      <button mat-raised-button color="accent" type="submit" [disabled]="updateForm.invalid || loading">Update Category</button>
+    </form>
+  </mat-card>
+
+  <mat-card class="category-card">
+    <div class="delete-section">
+      <mat-form-field appearance="outline">
+        <mat-label>Category Name to Delete</mat-label>
+        <input matInput [(ngModel)]="deleteCategoryName" name="deleteCategoryName" required />
+      </mat-form-field>
+      <button mat-stroked-button color="warn" (click)="deleteCategoryByName()" [disabled]="!deleteCategoryName || loading">Delete Category</button>
+    </div>
+  </mat-card>
+
+  <div *ngIf="message" class="message">{{ message }}</div>
+
+  <div style="margin-top:32px;">
+    <h3 style="margin-bottom: 16px;">All Categories</h3>
+    <div class="category-grid">
+      <mat-card class="category-summary-card" *ngFor="let cat of categories">
+        <div class="category-header">
+          <mat-icon class="cat-icon">category</mat-icon>
+          <span class="cat-title">{{ cat.categoryName }}</span>
+          <span class="cat-badge" *ngIf="cat.products && cat.products.length > 0">{{ cat.products.length }} product{{ cat.products.length > 1 ? 's' : '' }}</span>
+          <span class="cat-badge empty" *ngIf="!cat.products || cat.products.length === 0">No products</span>
+        </div>
+        <div class="cat-id">ID: {{ cat.categoryId }}</div>
+        <div class="cat-products" *ngIf="cat.products && cat.products.length > 0">
+          <div class="product-row" *ngFor="let p of cat.products">
+            <mat-icon class="prod-icon">shopping_bag</mat-icon>
+            <span class="prod-name">{{ p.name }}</span>
+            <span class="prod-meta">ID: {{ p.productId }}</span>
+            <span class="prod-meta">₹{{ p.price }}</span>
+            <span class="prod-meta">Stock: {{ p.stockQuantity }}</span>
+          </div>
+        </div>
+      </mat-card>
+    </div>
+    <div style="text-align:center; margin-top: 24px;">
+      <button mat-stroked-button color="primary" (click)="fetchCategories()">
+        <mat-icon>refresh</mat-icon> Refresh List
+      </button>
+    </div>
+  </div>
+</div>

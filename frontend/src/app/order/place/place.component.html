@@ -1,0 +1,21 @@
+<mat-card>
+  <h2>Checkout</h2>
+  <form [formGroup]="orderForm" (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Shipping Address</mat-label>
+      <textarea matInput formControlName="shippingAddress" required></textarea>
+      <mat-error *ngIf="orderForm.get('shippingAddress')?.hasError('required')">Shipping address is required</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Payment Method</mat-label>
+      <mat-select formControlName="paymentMethod" required>
+        <mat-option value="COD">Cash on Delivery</mat-option>
+        <mat-option value="UPI">UPI</mat-option>
+      </mat-select>
+      <mat-error *ngIf="orderForm.get('paymentMethod')?.hasError('required')">Payment method is required</mat-error>
+    </mat-form-field>
+    <button mat-raised-button color="primary" type="submit" [disabled]="loading || orderForm.invalid">
+      {{ loading ? 'Placing Order...' : 'Place Order' }}
+    </button>
+  </form>
+</mat-card>

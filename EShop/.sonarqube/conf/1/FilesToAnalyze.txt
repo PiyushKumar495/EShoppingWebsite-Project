@@ -1,0 +1,28 @@
+﻿C:\Users\piyuskum\Downloads\My Dotnet\try\EShop\EShop.Tests\AdminControllerTests.cs
+C:\Users\piyuskum\Downloads\My Dotnet\try\EShop\EShop.Tests\AIChatbotControllerTests.cs
+C:\Users\piyuskum\Downloads\My Dotnet\try\EShop\EShop.Tests\AuthControllerTests.cs
+C:\Users\piyuskum\Downloads\My Dotnet\try\EShop\EShop.Tests\AzureOpenAIServiceTests.cs
+C:\Users\piyuskum\Downloads\My Dotnet\try\EShop\EShop.Tests\CartControllerTests.cs
+C:\Users\piyuskum\Downloads\My Dotnet\try\EShop\EShop.Tests\CategoryControllerTests.cs
+C:\Users\piyuskum\Downloads\My Dotnet\try\EShop\EShop.Tests\ChatbotOperationsServiceTests.cs
+C:\Users\piyuskum\Downloads\My Dotnet\try\EShop\EShop.Tests\DtoTests.cs
+C:\Users\piyuskum\Downloads\My Dotnet\try\EShop\EShop.Tests\EmailServiceTests.cs
+C:\Users\piyuskum\Downloads\My Dotnet\try\EShop\EShop.Tests\GenericRepositoryTests.cs
+C:\Users\piyuskum\Downloads\My Dotnet\try\EShop\EShop.Tests\ModelTests.cs
+C:\Users\piyuskum\Downloads\My Dotnet\try\EShop\EShop.Tests\OrderControllerTests.cs
+C:\Users\piyuskum\Downloads\My Dotnet\try\EShop\EShop.Tests\OrderItemTests.cs
+C:\Users\piyuskum\Downloads\My Dotnet\try\EShop\EShop.Tests\PaymentControllerTests.cs
+C:\Users\piyuskum\Downloads\My Dotnet\try\EShop\EShop.Tests\ProductControllerTests.cs
+C:\Users\piyuskum\Downloads\My Dotnet\try\EShop\EShop.Tests\RepositoryServiceTests.cs
+C:\Users\piyuskum\Downloads\My Dotnet\try\EShop\EShop.Tests\UnitTest1.cs
+C:\Users\piyuskum\Downloads\My Dotnet\try\EShop\EShop.Tests\UserControllerTests.cs
+C:\Users\piyuskum\.nuget\packages\microsoft.net.test.sdk\17.8.0\build\netcoreapp3.1\Microsoft.NET.Test.Sdk.Program.cs
+C:\Users\piyuskum\.nuget\packages\microsoft.testplatform.testhost\17.8.0\build\netcoreapp3.1\x64\testhost.exe
+C:\Users\piyuskum\.nuget\packages\microsoft.testplatform.testhost\17.8.0\build\netcoreapp3.1\x64\testhost.dll
+C:\Users\piyuskum\.nuget\packages\nunit3testadapter\4.5.0\build\netcoreapp3.1\NUnit3.TestAdapter.dll
+C:\Users\piyuskum\.nuget\packages\nunit3testadapter\4.5.0\build\netcoreapp3.1\NUnit3.TestAdapter.pdb
+C:\Users\piyuskum\.nuget\packages\nunit3testadapter\4.5.0\build\netcoreapp3.1\nunit.engine.dll
+C:\Users\piyuskum\.nuget\packages\nunit3testadapter\4.5.0\build\netcoreapp3.1\nunit.engine.api.dll
+C:\Users\piyuskum\.nuget\packages\nunit3testadapter\4.5.0\build\netcoreapp3.1\nunit.engine.core.dll
+C:\Users\piyuskum\.nuget\packages\nunit3testadapter\4.5.0\build\netcoreapp3.1\testcentric.engine.metadata.dll
+C:\Users\piyuskum\Downloads\My Dotnet\try\EShop\EShop.Tests\TestResults\coverage.opencover.xml

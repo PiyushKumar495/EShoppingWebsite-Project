@@ -1,0 +1,158 @@
+<div class="admin-dashboard">
+  <h1>Admin Dashboard</h1>
+  <div class="dashboard-cards">
+    <mat-card class="dashboard-card">
+      <h2>Total Orders</h2>
+      <div class="dashboard-value">{{ totalOrders }}</div>
+      <!-- <a href="/order/history"><button mat-raised-button color="primary">View Orders</button></a> -->
+    </mat-card>
+    <mat-card class="dashboard-card">
+      <h2>Total Payments</h2>
+      <div class="dashboard-value">{{ totalPayments }}</div>
+      <a href="/admin/payments"><button mat-raised-button color="accent">View Payments</button></a>
+    </mat-card>
+    <mat-card class="dashboard-card">
+      <h2>Manage Categories</h2>
+      <a href="/category/manage"><button mat-raised-button color="primary">Categories</button></a>
+    </mat-card>
+    <mat-card class="dashboard-card">
+      <h2>Manage Products</h2>
+      <a href="/product/manage"><button mat-raised-button color="primary">Products</button></a>
+    </mat-card>
+  </div>
+
+  <div class="orders-section">
+    <h2>All Orders</h2>
+    <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+    <div *ngIf="error" class="empty-state error-state">{{ error }}</div>
+    <div *ngIf="!loading && !error && orders.length === 0" class="empty-state">No orders found.</div>
+    <mat-accordion *ngIf="orders.length > 0">
+      <mat-expansion-panel *ngFor="let order of orders">
+        <mat-expansion-panel-header>
+          <div class="order-header-row">
+            <div class="order-header-main">
+              <span class="order-id">Order #{{ order.orderId }}</span>
+              <span class="order-date">{{ order.orderDate | date:'short' }}</span>
+              <span class="order-amount">₹{{ order.totalAmount }}</span>
+              <span class="order-user" *ngIf="order.userName">| <b>User:</b> {{ order.userName }}</span>
+            </div>
+            <div class="order-header-status">
+              <span class="status-badge status-{{ order.status.toLowerCase() }}">{{ order.status }}</span>
+            </div>
+          </div>
+        </mat-expansion-panel-header>
+        <div class="order-summary-row">
+          <div class="order-summary-info">
+            <span><b>Shipping Address:</b> {{ order.shippingAddress }}</span>
+            <span><b>Payment:</b> {{ order.paymentMethod }}</span>
+          </div>
+          <div class="order-summary-status">
+            <ng-container *ngIf="order.status !== 'Delivered' && order.status !== 'Cancelled'; else statusTextActions">
+              <mat-form-field appearance="fill" class="order-status-select">
+                <mat-select [value]="order.status" (selectionChange)="updateOrderStatus(order, $event.value)">
+                  <mat-option value="Pending" *ngIf="order.status !== 'Shipped'">Pending</mat-option>
+                  <mat-option value="Shipped">Shipped</mat-option>
+                  <mat-option value="Delivered">Delivered</mat-option>
+                  <mat-option value="Cancelled">Cancelled</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </ng-container>
+            <ng-template #statusTextActions>
+              <span class="status-badge">{{ order.status }}</span>
+            </ng-template>
+          </div>
+        </div>
+<style>
+.order-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 8px 0;
+}
+.order-header-main {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+  font-size: 1.08rem;
+}
+.order-id {
+  font-weight: bold;
+  color: #ff3f6c;
+}
+.order-date {
+  color: #888;
+}
+.order-amount {
+  color: #1a8f3c;
+  font-weight: 500;
+}
+.order-user {
+  color: #1976d2;
+  font-weight: 500;
+}
+.order-header-status {
+  min-width: 100px;
+  text-align: right;
+}
+.status-badge {
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 0.98rem;
+  font-weight: 600;
+  color: #fff;
+  background: #888;
+  text-transform: capitalize;
+}
+.status-pending { background: #ff9800; }
+.status-shipped { background: #1976d2; }
+.status-delivered { background: #43a047; }
+.status-cancelled { background: #e53935; }
+.order-summary-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 10px 0 18px 0;
+  gap: 24px;
+}
+.order-summary-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 1rem;
+}
+.order-summary-status {
+  min-width: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+</style>
+        <div class="order-details">
+          <h3>Order Items</h3>
+          <ng-container *ngIf="order.items && order.items.length > 0; else noItems">
+            <table class="order-items-table">
+              <thead>
+                <tr>
+                  <th>Product Name</th>
+                  <th>Quantity</th>
+                  <th>Price</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of order.items">
+                  <td>{{ item.productName }}</td>
+                  <td>{{ item.quantity }}</td>
+                  <td>₹{{ item.price }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </ng-container>
+          <ng-template #noItems>
+            <div style="padding: 12px; color: #ff3f6c;">No items found for this order.</div>
+          </ng-template>
+        </div>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+</div>

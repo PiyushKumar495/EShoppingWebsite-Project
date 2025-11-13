@@ -1,0 +1,10 @@
+:host, [_nghost-ng-c2542376796] {
+  display: block;
+  background: #fff !important;
+  color: #232323 !important;
+  border-radius: 12px;
+  padding: 24px;
+  margin: 24px auto;
+  max-width: 500px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+}

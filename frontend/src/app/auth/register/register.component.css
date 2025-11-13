@@ -1,0 +1,118 @@
+.register-card {
+  max-width: 400px;
+  margin: 48px auto;
+  padding: 32px 28px 24px 28px;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(33, 150, 243, 0.10), 0 1.5px 6px rgba(0,0,0,0.04);
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.register-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+.register-icon {
+  font-size: 3rem;
+  color: #1976d2;
+  margin-bottom: 4px;
+}
+
+h2 {
+  font-weight: 700;
+  color: #1976d2;
+  margin: 0 0 8px 0;
+  font-size: 2rem;
+}
+
+.full-width {
+  width: 100%;
+  margin-bottom: 18px;
+}
+
+button[mat-raised-button] {
+  width: 100%;
+  font-size: 1.1rem;
+  font-weight: 600;
+  padding: 12px 0;
+  margin-top: 8px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(33, 150, 243, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.login-link {
+  margin-top: 18px;
+  text-align: center;
+  font-size: 1rem;
+}
+
+.login-link a {
+  color: #1976d2;
+  text-decoration: underline;
+  font-weight: 500;
+}
+
+@media (max-width: 600px) {
+  .register-card {
+    margin: 24px 8px;
+    padding: 18px 8px 12px 8px;
+  }
+  h2 {
+    font-size: 1.3rem;
+  }
+}
+
+:host {
+  display: block;
+  background: #23272a;
+  color: #ffd54f;
+  border-radius: 12px;
+  padding: 24px;
+  margin: 24px auto;
+  max-width: 500px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.18);
+}
+
+:host, .register-card, [_nghost-ng-c2542376796] {
+  background: #fff !important;
+  color: #232323 !important;
+  border-radius: 12px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+}
+
+.register-header h2, .register-title {
+  color: #ff3f6c;
+  font-weight: bold;
+}
+
+.register-icon {
+  color: #ff3f6c !important;
+}
+
+.mat-mdc-form-field {
+  background: #fff !important;
+  color: #232323 !important;
+}
+
+.mat-mdc-form-field-label {
+  color: #232323 !important;
+}
+
+.mat-mdc-input-element {
+  background: #fff !important;
+  color: #232323 !important;
+}
+
+.login-link a {
+  color: #ff3f6c;
+  font-weight: 500;
+}
