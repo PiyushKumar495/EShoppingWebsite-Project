@@ -6,7 +6,7 @@ Feel free to explore, contribute, or fork this repository. Happy Shopping! 🎁
 
 ---
 
-<img src="https://media.giphy.com/media/He9RyyLVJmE9B3F7s7/giphy.gif" alt="Online Shopping Animation" width="500"/>
+<!-- <img src="https://media.giphy.com/media/He9RyyLVJmE9B3F7s7/giphy.gif" alt="Online Shopping Animation" width="500"/> -->
 
 ---
 
@@ -78,8 +78,8 @@ GET    /api/admin/orders       # View All Orders (Admin)
 
 > Add project screenshots or animated recordings here!
 
-<img src="https://media.giphy.com/media/3o7aD9NGBdqG2yt1vK/giphy.gif" alt="Cart Animation" width="300"/>
-<img src="https://media.giphy.com/media/l3Ucl5pIqSaGa82T6/giphy.gif" alt="Product Animation" width="300"/>
+<!-- <img src="https://media.giphy.com/media/3o7aD9NGBdqG2yt1vK/giphy.gif" alt="Cart Animation" width="300"/>
+<img src="https://media.giphy.com/media/l3Ucl5pIqSaGa82T6/giphy.gif" alt="Product Animation" width="300"/> -->
 
 ---
 
